@@ -11,3 +11,4 @@ server.listen(port, function () {
     console.log(`BACKEND está rondando na porta ${port}.`)
 })
 
+module.exports = server
