@@ -20,21 +20,25 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('app.css')
     ],
-    module: {
-        loaders: [{
-            test: /.js[x]?$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/,
-            query: {
-                preset: ['es2015', 'react'],
-                plugin: ['transform-object-rest-spread']
+    module : {
+        loaders: [
+            {
+                test: /.js[x]?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                query: {
+                    presets: [
+                        'es2015', 'react'
+                    ],
+                    plugins: ['transform-object-rest-spread']
+                }
+            }, {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+            }, {
+                test: /\.woff|.woff2|.ttf|.eot|.svg*.*$/,
+                loader: 'file'
             }
-        }, {
-            test: /\.css$/,
-            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-        }, {
-            test: /\.woff|.woff2|.ttf|.eot|.svg*.*$/,
-            loader: 'file'
-        }]
+        ]
     }
 }
